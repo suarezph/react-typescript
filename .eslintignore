@@ -1,0 +1,8 @@
+node_modules
+build
+coverage
+public
+.docz
+scripts/setup.js
+src/react-app-env.d.ts
+src/reportWebVitals.ts

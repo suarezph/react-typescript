@@ -1,0 +1,11 @@
+TODO: phase 1
+install typescript - done
+install prettierrc (auto format when saved) - done
+install eslint /**/ - done
+install script/setup (@TODO: initially setup)
+
+TODO: phase 2
+install entry-point
+install material-ui
+install styled-components
+
