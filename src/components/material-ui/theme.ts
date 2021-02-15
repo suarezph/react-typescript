@@ -1,8 +1,6 @@
 import {createMuiTheme} from '@material-ui/core/styles'
 import Colors from './colors'
 
-const pxtoRem = (px: number): string => `${px / 16}rem`
-
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -17,7 +15,4 @@ const theme = createMuiTheme({
   },
 })
 
-const drawerWidth = 280
-
-export {drawerWidth, pxtoRem}
 export default theme
