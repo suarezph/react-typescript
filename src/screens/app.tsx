@@ -1,8 +1,14 @@
 import React from 'react'
-import Private from './private'
+import CssBaseLine from '@material-ui/core/CssBaseline'
+import Login from './login'
 
 const App: React.FC = () => {
-  return <Private />
+  return (
+    <>
+      <CssBaseLine />
+      <Login />
+    </>
+  )
 }
 
 export default App

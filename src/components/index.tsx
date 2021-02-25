@@ -1,8 +1,3 @@
-import TestUtils from './utils'
-/**
- * ?Material themes
- */
-import themes from './material-ui/theme'
+import * as Themes from './themes'
 
-export {themes}
-export default TestUtils
+export {Themes as default}
