@@ -1,8 +1,7 @@
-import {createMuiTheme} from '@material-ui/core/styles'
-import colors from './colors'
+import { createMuiTheme } from '@material-ui/core/styles'
 
 const DefaultThemes = createMuiTheme({
   palette: {},
 })
 
-export {DefaultThemes as default, colors}
+export default DefaultThemes
