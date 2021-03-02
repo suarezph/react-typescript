@@ -1,4 +1,5 @@
-export default {
-  auth_token: '___auth_token___',
-  locale: '___selected_locale___',
-}
+const authToken = '___auth_token___'
+const locale = '___selected_locale___'
+
+export { locale }
+export default authToken
