@@ -7,7 +7,8 @@ import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import * as yup from 'yup'
 import { useForm } from 'react-hook-form'
-import useYupValidationResolver from '../../components/forms'
+import { yupResolver } from '@hookform/resolvers/yup'
+
 import RegisterAPI, { RegisterTypes } from '../../services/registerApi'
 
 import styles from './assets/styles.module.css'
@@ -15,17 +16,15 @@ import styles from './assets/styles.module.css'
 const Registration: React.FC = () => {
   const [isFetching, setStateIsFetching] = React.useState(false)
 
-  const validationSchema = React.useMemo(
-    () =>
-      yup.object({
-        fullname: yup.string().required('FullName is Required'),
-        email: yup.string().required('Email Address is Required'),
-        password: yup.string().required('Password is Required'),
-      }),
-    [],
-  )
-  const resolver = useYupValidationResolver(validationSchema)
-  const { register, handleSubmit, errors } = useForm({ resolver })
+  const schema = yup.object().shape({
+    fullname: yup.string().required('FullName is Required'),
+    email: yup.string().required('Email Address is Required'),
+    password: yup.string().required('Password is Required'),
+  })
+
+  const { register, handleSubmit, errors } = useForm({
+    resolver: yupResolver(schema),
+  })
 
   const onSubmit = async (data: RegisterTypes) => {
     setStateIsFetching(true)

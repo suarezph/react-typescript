@@ -6,22 +6,19 @@ import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import * as yup from 'yup'
 import { useForm } from 'react-hook-form'
-import useYupValidationResolver from '../../components/forms'
+import { yupResolver } from '@hookform/resolvers/yup'
 
 import styles from './assets/styles.module.css'
 
 const Login: React.FC = () => {
-  const validationSchema = React.useMemo(
-    () =>
-      yup.object({
-        username: yup.string().required('Usenrame is Required'),
-        password: yup.string().required('Password is Required'),
-      }),
-    [],
-  )
-  const resolver = useYupValidationResolver(validationSchema)
-  const { register, handleSubmit, errors } = useForm({ resolver })
-  const onSubmit = (data: any): void => {
+  const schema = yup.object().shape({
+    email: yup.string().required('Email Address is Required'),
+    password: yup.string().required('Password is Required'),
+  })
+  const { register, handleSubmit, errors } = useForm({
+    resolver: yupResolver(schema),
+  })
+  const onSubmit = async (data: any) => {
     console.log(data)
   }
 
@@ -39,17 +36,17 @@ const Login: React.FC = () => {
             </Grid>
             <Grid item xs={12} sm={12}>
               <TextField
-                autoComplete="username"
-                name="username"
+                autoComplete="email"
+                name="email"
                 variant="outlined"
                 required
                 fullWidth
-                id="username"
-                label="Username"
+                id="email"
+                label="Email Address"
                 inputRef={register}
                 autoFocus
               />
-              {errors.username && <p>{errors.username.message}</p>}
+              {errors.email && <p>{errors.email.message}</p>}
             </Grid>
             <Grid item xs={12} sm={12}>
               <TextField
