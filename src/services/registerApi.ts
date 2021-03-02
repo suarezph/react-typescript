@@ -7,7 +7,7 @@ export interface RegisterTypes {
   password: string
 }
 
-const create = (data: RegisterTypes): Promise<any> =>
+const RegisterAPI = (data: RegisterTypes): Promise<any> =>
   request.post('/users/register', data)
 
-export default create
+export default RegisterAPI

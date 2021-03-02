@@ -93,7 +93,7 @@ const request = {
         })
         .catch((error: AxiosError) => {
           if (axios.isCancel(error)) return
-          reject(error)
+          reject(error.response)
         })
     })
   },

@@ -1,4 +1,5 @@
 import React from 'react'
+import { AxiosResponse, AxiosError } from 'axios'
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import TextField from '@material-ui/core/TextField'
@@ -7,11 +8,13 @@ import Grid from '@material-ui/core/Grid'
 import * as yup from 'yup'
 import { useForm } from 'react-hook-form'
 import useYupValidationResolver from '../../components/forms'
-import Regsiter, { RegisterTypes } from '../../services/registerApi'
+import RegisterAPI, { RegisterTypes } from '../../services/registerApi'
 
 import styles from './assets/styles.module.css'
 
 const Registration: React.FC = () => {
+  const [isFetching, setStateIsFetching] = React.useState(false)
+
   const validationSchema = React.useMemo(
     () =>
       yup.object({
@@ -23,9 +26,19 @@ const Registration: React.FC = () => {
   )
   const resolver = useYupValidationResolver(validationSchema)
   const { register, handleSubmit, errors } = useForm({ resolver })
+
   const onSubmit = async (data: RegisterTypes) => {
-    const response = await Regsiter(data)
-    console.log('outside', response)
+    setStateIsFetching(true)
+
+    RegisterAPI(data)
+      .then((response: AxiosResponse) => {
+        console.log(response)
+        setStateIsFetching(false)
+      })
+      .catch((error: AxiosError) => {
+        console.log(error)
+        setStateIsFetching(false)
+      })
   }
 
   return (
@@ -86,6 +99,7 @@ const Registration: React.FC = () => {
               >
                 Submit
               </Button>
+              {isFetching && <p>Loading</p>}
             </Grid>
           </Grid>
         </form>

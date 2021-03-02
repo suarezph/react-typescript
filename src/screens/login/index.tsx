@@ -25,7 +25,6 @@ const Login: React.FC = () => {
     console.log(data)
   }
 
-  console.log('Errors', errors)
   return (
     <div className={styles.background}>
       <Container maxWidth="sm" className={styles.login}>
