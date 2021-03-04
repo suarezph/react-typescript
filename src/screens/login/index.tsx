@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid'
 import * as yup from 'yup'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { Link } from 'react-router-dom'
 
 import styles from './assets/styles.module.css'
 
@@ -72,6 +73,19 @@ const Login: React.FC = () => {
               >
                 Submit
               </Button>
+            </Grid>
+            <Grid container alignItems="center" justify="space-between">
+              <Grid item>
+                <Button
+                  disableFocusRipple
+                  disableRipple
+                  style={{ textTransform: 'none' }}
+                  variant="text"
+                  color="primary"
+                >
+                  <Link to="/register">Register here</Link>
+                </Button>
+              </Grid>
             </Grid>
           </Grid>
         </form>

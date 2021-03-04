@@ -1,18 +1,19 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 
-import Dashboard from '../screens/dashboard'
-import Branch from '../screens/branch'
-// import NotFoundScreen from '@screens/errors/not-found'
+import Login from '../screens/login'
+import Register from '../screens/register'
+import NotFound from '../screens/extras/notFound'
 
-const PrivateRoutes: React.FC = () => {
+const PublicRoutes: React.FC = () => {
   return (
     <Switch>
-      <Redirect exact from="/" to="/dashboard" />
-      <Route exact key="dashboard" path="/dashboard" component={Dashboard} />
-      <Route exact key="branch" path="/branch" component={Branch} />
+      <Redirect exact from="/" to="/login" />
+      <Route key="login" path="/login" component={Login} />
+      <Route key="register" path="/register" component={Register} />
+      <Route key="notfound" path="*" component={NotFound} />
     </Switch>
   )
 }
 
-export default PrivateRoutes
+export default PublicRoutes

@@ -5,6 +5,7 @@ export interface RegisterTypes {
   fullname: string
   email: string
   password: string
+  passwordConfirmation: string
 }
 
 const RegisterAPI = (data: RegisterTypes): Promise<any> =>
