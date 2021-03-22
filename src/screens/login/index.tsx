@@ -1,4 +1,5 @@
 import React from 'react'
+import { AxiosResponse } from 'axios'
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import TextField from '@material-ui/core/TextField'
@@ -9,9 +10,12 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Link } from 'react-router-dom'
 
+import LoginAPI, { LoginTypes } from '../../services/loginApi'
 import styles from './assets/styles.module.css'
 
 const Login: React.FC = () => {
+  const [isFetching, setStateIsFetching] = React.useState(false)
+
   const schema = yup.object().shape({
     email: yup.string().required('Email Address is Required'),
     password: yup.string().required('Password is Required'),
@@ -19,8 +23,17 @@ const Login: React.FC = () => {
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema),
   })
-  const onSubmit = async (data: any) => {
-    console.log(data)
+  const onSubmit = async (data: LoginTypes) => {
+    LoginAPI(data)
+      .then((response: AxiosResponse) => {
+        console.log(response)
+        setStateIsFetching(false)
+      })
+      .catch((error: AxiosResponse) => {
+        if (error && error.data) {
+          console.log(error.data)
+        }
+      })
   }
 
   return (
@@ -82,8 +95,10 @@ const Login: React.FC = () => {
                   style={{ textTransform: 'none' }}
                   variant="text"
                   color="primary"
+                  component={Link}
+                  to="/register"
                 >
-                  <Link to="/register">Register here</Link>
+                  Register here
                 </Button>
               </Grid>
             </Grid>
